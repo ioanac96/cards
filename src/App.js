@@ -74,14 +74,25 @@ class App extends React.Component {
 
     this.state = {
       postsArray: [{
-        title: 'Titlu',
-        description: 'Descrierere',
+        title: 'Obraznicul obraznicilor',
+        description: 'Cel mai obraznic dintre pamanteni.',
         url: 'https://www.animalzoo.ro/wp-content/uploads/2017/05/cu11.jpg'
+      },
+      {
+        title: 'Adormitul adormitilor',
+        description: 'Cel mai adormit din lumea asta mare.',
+        url: 'https://images.megapixl.com/5784/57840756.jpg'
+      },
+      {
+        title: 'Iubibilul iubitilor',
+        description: 'Cel mai iubibil caine din univers.',
+        url: 'https://images.unsplash.com/photo-1551408687-4fa2bd0b683a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
       }
     ]
     }
 
     this.onAddPost = this.onAddPost.bind(this);
+    this.handleClickOnDelete = this.handleClickOnDelete.bind(this);
   }
 
   onAddPost(post) {
@@ -103,6 +114,15 @@ class App extends React.Component {
     console.log(post);
   }
 
+  handleClickOnDelete(index) {
+    console.log(index)
+    const newArray = Object.assign([], this.state.postsArray);
+    newArray.splice(index, 1);
+    this.setState({
+      postsArray: newArray
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -110,7 +130,7 @@ class App extends React.Component {
         <AddForm onAdd={this.onAddPost} />
 
         <div>
-          <Posts listOfPosts={this.state.postsArray}/>
+          <Posts listOfPosts={this.state.postsArray} onDelete={this.handleClickOnDelete}/>
         </div>
       </div>
     ); 
@@ -121,11 +141,13 @@ class Posts extends React.Component {
   constructor(props) {
     super(props)
   }
+
+
   render() {
     return (
       <div>
-        {this.props.listOfPosts.map(x => (
-          <Post postInfo={x} />
+        {this.props.listOfPosts.map((x, index) => (
+          <Post postInfo={x} index={index} onDelete={this.props.onDelete}/>
         ))}
       </div>
     );
@@ -136,9 +158,12 @@ class Post extends React.Component {
   render() {
     return (
       <div>
-        <div>{this.props.postInfo.title}</div>
+        <h2>{this.props.postInfo.title}</h2>
         <div>{this.props.postInfo.description}</div>
         <img src={this.props.postInfo.url} />
+        <div>
+            <button onClick={() => {this.props.onDelete(this.props.index)}}>Delete</button>
+        </div>
       </div>
 
     );
