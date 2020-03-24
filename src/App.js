@@ -14,7 +14,8 @@ class App extends React.Component {
       cards: [],
       computerCards: [],
       playerStopped: false,
-      computerStopped: false
+      computerStopped: false,
+      isMobile: window.innerWidth < 900
     };
 
     this.onShuffle = this.onShuffle.bind(this);
@@ -23,6 +24,7 @@ class App extends React.Component {
     this.clickStop = this.clickStop.bind(this);
     this.computerMoves = this.computerMoves.bind(this);
     this.getCard = this.getCard.bind(this);
+    this.onResize = this.onResize.bind(this);
   }
 
   
@@ -63,7 +65,8 @@ class App extends React.Component {
       cards: [],
       computerCards: [],
       playerStopped: false,
-      computerStopped: false
+      computerStopped: false,
+      isMobile: window.innerWidth < 900
 
     });
 
@@ -145,10 +148,30 @@ class App extends React.Component {
    return sum;
   }
 
+  renderMobile() {
+    return <div>Mobile version!</div>
+  }
 
+  onResize() {
+    const isMobile = window.innerWidth < 900;
+    if(isMobile !== this.state.isMobile){
+      this.setState({
+        isMobile: isMobile
+      });
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.onResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+  }
 
 
   render() {
+    if(this.state.isMobile) return this.renderMobile();
     const verify = this.state.deckId !== '';
     const playerSum = this.cardsSum(this.state.cards);
     const computerSum = this.cardsSum(this.state.computerCards);
@@ -167,6 +190,7 @@ class App extends React.Component {
       <div className="App">
         <h1>BlackJack</h1>
         <button onClick={this.onShuffle}>Start a new game</button>
+        <button onClick={() => {window.removeEventListener('resize', this.onResize);}}>Stop resize</button>
         {
           (verify) ? 
             <div>
