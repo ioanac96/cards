@@ -1,10 +1,10 @@
 import React from 'react';
-import fetch from 'axios'
 import logo from './logo.svg';
 import './App.css';
 import Home from './Home';
 import Posts from './Posts';
 import ContactUs from './ContactUs';
+import Header from './header';
 import * as serviceWorker from './serviceWorker';
 import {
   BrowserRouter as Router,
@@ -18,24 +18,7 @@ class App extends React.Component{
     return (
       <Router>
         <div>
-          <nav>
-            <table>
-              <thead>
-                <tr>
-                  <td>
-                    <Link to="/">Home</Link>
-                  </td>
-                  <td>
-                    <Link to="/posts">Posts</Link>
-                  </td>
-                  <td>
-                  <Link to="/contactUs">Contact us</Link>
-                  </td>
-                </tr>
-              </thead>
-            </table>
-          </nav>
-  
+          <Header />
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>

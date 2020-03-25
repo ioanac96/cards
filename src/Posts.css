@@ -1,0 +1,28 @@
+.post  {
+    padding: 20px;
+    min-width: 200px;
+    width: 100%;
+    background-color: #ADD8E6;
+    border-radius: 15px;
+    margin: 10px 0;
+    
+    
+}
+
+.entirePost {
+    background-color:#FDF5E6;
+    box-sizing: border-box;
+    display: flex;
+   
+    
+}
+
+.column {
+    flex-grow: 1;
+    width: 33%;
+    margin: 0 20px;
+}
+
+.upVotes {
+    text-align: right;
+}
