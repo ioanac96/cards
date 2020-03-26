@@ -1,27 +1,23 @@
 import React from 'react';
+import './header.css';
+import Posts from './Posts';
 import {
     Link
   } from "react-router-dom";
 
 class Header extends React.Component {
+     displayPosts(){
+    return <Posts />
+    }  
     render(){
+          
       return (
         <nav>
-            <table>
-                <thead>
-                    <tr>
-                        <td>
-                            <Link to="/">Home</Link>
-                        </td>
-                        <td>
-                            <Link to="/posts">Posts</Link>
-                        </td>
-                        <td>
-                            <Link to="/contactUs">Contact us</Link>
-                        </td>
-                    </tr>
-                </thead>
-            </table>
+          <div className="navBar">
+          <Link to="/" className="link">Home</Link>
+          <Link to="/posts" className="link">Posts</Link>
+          <Link to="/contactUs" className="link" >Contact us</Link>
+          </div>
         </nav>
       )
     }

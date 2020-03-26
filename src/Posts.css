@@ -2,7 +2,7 @@
     padding: 20px;
     min-width: 200px;
     width: 100%;
-    background-color: #ADD8E6;
+    background-color: #8DB580;
     border-radius: 15px;
     margin: 10px 0;
     
@@ -10,7 +10,7 @@
 }
 
 .entirePost {
-    background-color:#FDF5E6;
+    background-color: #DDD1C7;
     box-sizing: border-box;
     display: flex;
    

@@ -1,0 +1,21 @@
+
+.navBar {
+    display: inline-flex;
+    width: 100%;
+    background-color: #4B4A67 ;
+    
+}
+
+.link {
+    padding: 15px 20px;
+    font-size: 20px;
+    background-color: #4B4A67;
+    color: white;
+    text-decoration: none;
+}
+
+
+
+.link:hover {
+    background-color: #7E8987;
+  }

@@ -13,7 +13,7 @@ class Posts extends React.Component {
     }
 
     onPosts() {
-      console.log('BangBang');
+       
       const url = 'https://cat-fact.herokuapp.com/facts'
       
       const promise = fetch(url,{
@@ -45,6 +45,7 @@ class Posts extends React.Component {
       const { name = {} } = user;
       const { first = '', last = '' } = name;
       return {
+        id: data._id,
         text: data.text,
         userName: {
           first: first,
@@ -83,7 +84,7 @@ class Posts extends React.Component {
         <div className="column">
           {
             this.props.allPosts.map((x) => (
-                <table className="post">
+                <table className="post" key={x.id}>
                   <tbody>
                     <tr>
                       <td>{x.userName.first} {x.userName.last}</td>
